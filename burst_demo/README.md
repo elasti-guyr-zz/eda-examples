@@ -41,12 +41,7 @@ Cleaning the Project - destroying all the regression run resources from GCP
 
 
 
-
-
-
-
-
-
+![My Image](Updated_Arch_Numbered.png)
 EDA Burst to Cloud Demo High Level Architecture and Steps
 
 
