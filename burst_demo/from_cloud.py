@@ -7,6 +7,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 source_cluster_name = "<GCP CVO name>"
 source_cluster_mgmt_addr = "<GCP CVO management IP>"
+source_cluster_intercluster_addr = "<GCP CVO intercluster IP>"
 source_cluster_usr = "<GCP CVO username>"
 source_cluster_pswrd = "<GCP CVO password>"
 source_aggr_name = "<GCP CVO aggregate name>"
@@ -46,6 +47,8 @@ passphrase = passphrase['records'][0]['authentication']['passphrase']
 time.sleep(5)
 
 #FROM TARGET NetApp
+#IMPORTANT: For some latest ONTAP versions the source_cluster_mgmt_addr should be replaced with source_cluster_intercluster_addr
+
 data = {"remote":{"ip_addresses":[source_cluster_mgmt_addr]}, "authentication":{"passphrase":passphrase}}
 response = requests.post('https://{}/api/cluster/peers'.format(target_cluster_mgmt_addr), data=json.dumps(data), verify=False, auth=(target_cluster_usr, target_cluster_pswrd))
 
@@ -78,6 +81,8 @@ print(response.status_code)
 time.sleep(10)
 
 #FROM TARGET NetApp - Target VOLUME creation
+#IMPORTANT: Target on-prem NetApp  aggregate name must be edited below manually - replace A250_anthos_01_NVME_SSD_1 with relevant to your setup name
+
 data = {"volume":target_volume_name,"aggr-list":["A250_anthos_01_NVME_SSD_1"],"origin-volume":source_volume_name,"vserver":format(target_svm_name),"origin-vserver":format(source_svm_name),"size":"100GB","junction-path":"/{}".format(target_volume_name)}
 response = requests.post('https://{}/api/private/cli/volume/flexcache'.format(target_cluster_mgmt_addr), data=json.dumps(data), verify=False, auth=(target_cluster_usr, target_cluster_pswrd))
 
