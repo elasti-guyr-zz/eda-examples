@@ -66,6 +66,8 @@ print(response.status_code)
 time.sleep(10)
 
 #FROM TARGET NetApp - Target VOLUME creation
+#IMPORTANT: Target CVO aggregate name must be edited below manually - replace aggr1 with relevant to your setup name
+
 data = {"volume":target_volume_name,"aggr-list":["aggr1"],"origin-volume":source_volume_name,"vserver":"svm_{}".format(target_cluster_name),"origin-vserver":format(source_svm_name),"size":"100GB","junction-path":"/{}".format(target_volume_name)}
 response = requests.post('https://{}/api/private/cli/volume/flexcache'.format(target_cluster_mgmt_addr), data=json.dumps(data), verify=False, auth=(target_cluster_usr, target_cluster_pswrd))
 
