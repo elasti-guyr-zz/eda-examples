@@ -1,5 +1,9 @@
 Introduction
-PLACEHOLDER...
+The main goal behind this demo is to present a concept and steps required for bursting an EDA workload to the GCP. Following are the key points showcased throughout the the demonstration:
+Access to cloud on-demand compute and storage resources that can help meet tight deadlines
+Effectively leverage the elasticity of the cloud resources to build highly utilized infrastructures
+Accelerate simulations with more cloud compute to shorten time to market
+Benefit from GCP’s collaborations with NetApp throughout the customer’s journey to the cloud
 
 
 Environments and Tools: 
@@ -20,8 +24,13 @@ Guy Rinkevich (guyrinkevich@google.com)
 
 Notes and Prerequisites:
 Demo can be reproduced either with on-prem NetApp system or with in-cloud NetApp CVO deployment to simulate the on-prem storage environment
-PLACEHOLDER - Explain why we use 2 CVOs
-List of GCP resources used for this demo:
+It's not required to use 2 GCP NetApp CVO instances. Single CVO can perfectly serve for both reads and writes. We’ve decided to deploy 2 CVOs mainly to showcase the ability to separate between reads intensive and write intensive environments. In our case:
+CVO1 will act as both high-performance storage for EDA workload in GCP and cache for on-prem configuration files
+CVO2 will be used for “reverse caching”. The results of the jobs run in GCP will be written here and appear to be local from on-prem
+List of GCP infrastructure resources used for this demo:
+NetApp: 2x CVOs with FlexCache, Cloud Manager (Connector)
+SLURM Cluster: 22x n1-standard-2 VMs, 1x 100GB + 20x 20GB PD-SSD, 1x 50GB+1x20GB PD-Standard 
+
 NetApp CVO - 
 SLURM Cluster -  
 NetApp CVO how-to preparation GCP project for deployment
@@ -78,6 +87,16 @@ terraform init
 terraform plan
 terraform apply 
 It will take approximately 5 min to deploy the connector (NetApp Cloud Manager instance) and 15 mins to deploy 2 NetApp CVOs
+Access both NetApp on-prem and GCP NetApp CVOs configurations and collect relevant information that is required for FlexCache relationships configuration. The CVOs can be accessed either through NetApp Cloud Manager, NetApp ONTAP CLI or NetApp REST API. Following information is required for FlexCache and further SLURM configurations:
+cluster name
+cluster mgmt addr
+cluster intercluster addr
+cluster data interface addr server_ip
+cluster username
+cluster password
+cluster aggregate name 
+cluster volume name
+cluster svm name
 
 
 
