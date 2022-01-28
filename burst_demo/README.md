@@ -230,6 +230,6 @@ vserver peer delete -vserver <vserver name> -peer-vserver <peer vserver name>_
     * Delete cluster peer connections:
 _cluster peer delete -cluster <cluster name>_
 * Connect to bastion host to Delete CVO deployments:  
-_sudo su
-terraform destroy_
+_sudo su_
+_terraform destroy_
 
