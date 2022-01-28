@@ -28,11 +28,8 @@ It's not required to use 2 GCP NetApp CVO instances. Single CVO can perfectly se
 CVO1 will act as both high-performance storage for EDA workload in GCP and cache for on-prem configuration files
 CVO2 will be used for “reverse caching”. The results of the jobs run in GCP will be written here and appear to be local from on-prem
 List of GCP infrastructure resources used for this demo:
-NetApp: 2x CVOs with FlexCache, Cloud Manager (Connector)
+NetApp CVO: 2x CVOs with FlexCache n1-standard-8, 500GB PD-SSD, 1x Cloud Manager (Connector) n1-standard-8
 SLURM Cluster: 22x n1-standard-2 VMs, 1x 100GB + 20x 20GB PD-SSD, 1x 50GB+1x20GB PD-Standard 
-
-NetApp CVO - 
-SLURM Cluster -  
 NetApp CVO how-to preparation GCP project for deployment
 FlexCache license is installed on on-prem NetApp storage system
 
