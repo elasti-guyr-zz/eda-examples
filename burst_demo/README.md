@@ -89,15 +89,15 @@ terraform apply
 * It will take approximately 5 min to deploy the connector (NetApp Cloud Manager instance) and 15 mins to deploy 2 NetApp CVOs
 * Access both NetApp on-prem and GCP NetApp CVOs configurations and collect relevant information that is required for FlexCache relationships configuration. The CVOs can be accessed either through NetApp Cloud Manager (https://docs.netapp.com/us-en/occm/concept_overview.html), NetApp ONTAP CLI (https://docs.netapp.com/us-en/ontap/system-admin/index.html) or NetApp REST API (https://docs.netapp.com/us-en/ontap-automation/how_to_access_the_ontap_api.html). Following information is required for FlexCache and further SLURM configurations:
 
-cluster name
-cluster mgmt addr
-cluster intercluster addr
-cluster data interface addr server_ip
-cluster username
-cluster password
-cluster aggregate name 
-cluster volume name
-cluster svm name
+ * cluster name
+ * cluster mgmt addr
+ * cluster intercluster addr
+ * cluster data interface addr server_ip
+ * cluster username
+ * cluster password
+ * cluster aggregate name 
+ * cluster volume name
+ * cluster svm name
 
 
 Follow these steps to create the FlexCache relationships between on-prem and in-cloud NetApp storage systems: 
@@ -136,15 +136,13 @@ subnetwork_name = <your subnet name>
 disable_controller_public_ips = false (optional)
 disable_login_public_ips      = false (optional)
 ```
-  * Under network_storage, fill the following information for both CVOs:
 ```
 server_ip = “<CVO Data Interface IP>“
 remote_mount = “<CVO Volume name>“
 ```
-  * Under partitions:
 ```
 machine_type = “<SLURM Worker VM configuration>“
-13 = “<SLURM Workers Count>“
+max_node_count = “<SLURM Workers Count>“
 zone = “<your zone, make sure you use the same zone for as for CVOs>“
 vpc_subnet = “<your subnet name>“
 ```
@@ -161,8 +159,8 @@ terraform plan -var-file=basic.tfvars
 terraform apply -var-file=basic.tfvars
 ```
 * 2 VMs will be created (the third will be deleted a few min after creation):
-  * <cluster_name>-login0
-  * <cluster_name>-controller
+   * <cluster_name>-login0
+   * <cluster_name>-controller
 * Login to SLURM login0 node using SSH and wait till setup completes its configuration. It might take ~10-15 min and following message will appear “  Slurm login daemon installation complete : "
 ```
 gcloud compute ssh <login0 VM name> --zone <zone>
