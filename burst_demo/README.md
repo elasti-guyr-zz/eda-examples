@@ -25,8 +25,8 @@ Guy Rinkevich (guyrinkevich@google.com)
 # -- Notes and Prerequisites --
 * Demo can be reproduced either with on-prem NetApp system or with in-cloud NetApp CVO deployment to simulate the on-prem storage environment
 * It's not required to use 2 GCP NetApp CVO instances. Single CVO can perfectly serve for both reads and writes. We’ve decided to deploy 2 CVOs mainly to showcase the ability to separate between reads intensive and write intensive environments. In our case:
- * CVO1 will act as both high-performance storage for EDA workload in GCP and cache for on-prem configuration files
- * CVO2 will be used for “reverse caching”. The results of the jobs run in GCP will be written here and appear to be local from on-prem
+ -* CVO1 will act as both high-performance storage for EDA workload in GCP and cache for on-prem configuration files
+ -* CVO2 will be used for “reverse caching”. The results of the jobs run in GCP will be written here and appear to be local from on-prem
 * List of GCP infrastructure resources used for this demo:
  * NetApp CVO: 2x CVOs with FlexCache n1-standard-8, 500GB PD-SSD, 1x Cloud Manager (Connector) n1-standard-8
  * SLURM Cluster: 22x n1-standard-2 VMs, 1x 100GB + 20x 20GB PD-SSD, 1x 50GB+1x20GB PD-Standard 
