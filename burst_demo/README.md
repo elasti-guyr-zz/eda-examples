@@ -205,11 +205,11 @@ sudo for i in {1..150}; do regreport /mnt/<Results DIR> -summary | egrep -w "PAS
 GCP Project and on-prem, Regression Run results verification
 
 * Upon job completion (all 46 tests are done and IO is stopped) verify results accessibility both from in-cloud and from on-prem:
-  * Present in-cloud created results directory (from <cluster_name>-login0 node ):
+Present in-cloud created results directory (from <cluster_name>-login0 node ):
 ```
 sudo ls -ltr /mnt/<results dir>
 ```
-     * Present that these results can be accessed from on-prem client. From on-prem list content of your results directory (in our case /results):
+Present that these results can be accessed from on-prem client. From on-prem list content of your results directory (in our case /results):
 ```
 sudo ls -ltr /results/<results dir>
 ```
