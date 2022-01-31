@@ -218,13 +218,12 @@ sudo ls -ltr /results/<results dir>
 GCP Project, OpenPiton Regression Run with 20 Workers
 
 * Same run with increased number of the SLURM workers presents faster completion time and GCP’s ability for instant scalability
-* From SLURM controller node update the number of the SLURM workers
+* From SLURM controller node update the number of the SLURM workers from [0-9] to [0-19]
 ```
 sudo su
 gcloud compute ssh <controller VM name> --zone <zone>
 vim /apps/slurm/current/etc/slurm.conf
 ```
-Scroll to EOF and update the count from [0-9] to [0-19]
 ```
 systemctl restart slurmctld
 ```
