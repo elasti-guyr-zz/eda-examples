@@ -209,7 +209,7 @@ GCP Project and on-prem, Regression Run results verification
 ```
 sudo ls -ltr /mnt/<results dir>
 ```
-   * Present that these results can be accessed from on-prem client. From on-prem list content of your results directory (in our case /results):
+     * Present that these results can be accessed from on-prem client. From on-prem list content of your results directory (in our case /results):
 ```
 sudo ls -ltr /results/<results dir>
 ```
