@@ -257,28 +257,25 @@ GCP Project and on-prem, Environments clean-up
 ```
 sudo su
 cd eda-examples/terraform/slurm-cluster
-terraform delete -var-file burst-cluster.tfvars
+terraform destroy -var-file burst-cluster.tfvars
 ```
 * Login to on-prem NetApp and cloud CVOs and Delete FlexCache relationships
-  * Delete FlexCache Volumes:
-    * From the cluster that has the FlexCache volume, take the FlexCache volume offline: 
+  * From the cluster that has the FlexCache volume, take the FlexCache volume offline: 
 ```
 sudo su
 ssh <username>@<cluster mgmt ip>
 volume offline <volume name>
 ```
-    * Delete the FlexCache volume:
 ```
 volume flexcache delete -volume <name> -vserver <vserver name>
 ```
   * From the origin cluster, clean up the FlexCache relationship:
-    * Delete vserver peer connections:
 ```
 sudo su
 ssh <username>@<cluster mgmt ip>
 vserver peer delete -vserver <vserver name> -peer-vserver <peer vserver name>
 ```
-    * Delete cluster peer connections:
+  * Delete cluster peer connections:
 ```
 cluster peer delete -cluster <cluster name>
 ```
